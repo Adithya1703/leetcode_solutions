@@ -76,7 +76,7 @@ public:
 Optimal Solution:no optimal solution other than this in cpp
 
 Python Code
-Optimal Solution: replace less than one chars and translate to numbers
+replace less than one chars and translate to numbers
 
 class Solution:
 	def romanToint(self, s->str)->int:
