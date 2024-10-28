@@ -1,0 +1,51 @@
+Question: "Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+ 
+
+Example 1:
+
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+Example 2:
+
+Input: strs = ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+ 
+
+Constraints:
+
+1 <= strs.length <= 200
+0 <= strs[i].length <= 200
+strs[i] consists of only lowercase English letters."
+
+CPP Solution - 
+Brute approach - TIme complexity - O(n*m^2) considering first string in array os strings as longest common prefix and dimmin it down till common prefix matches with all strings in array
+
+code - 
+#include <string>
+#include <vector>
+
+class Solution{
+public:
+	string LongestCommonPrefix(vector<char> strs){
+		if(strs.empty()) return "";
+		string ans = strs[0]; //considering first array to be longest common prefix
+		for(int i=1;i<strs.size();i++)
+		{
+			while(strs[i].find(ans)!=0){
+				ans = ans.substr(0,ans.size());
+				if(ans.empty()) return "";
+			}
+		}
+		return ans;
+	}
+}
+
+
+Another Solution: Using Trie Data structure class can decrease the time cpmplexity to O(n*m)
+
+class Trie
+
