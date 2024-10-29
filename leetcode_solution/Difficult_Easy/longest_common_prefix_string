@@ -47,5 +47,85 @@ public:
 
 Another Solution: Using Trie Data structure class can decrease the time cpmplexity to O(n*m)
 
-class Trie
+class Trie{
+	class Node{
+	public:
+		bool end;
+		Node* child[26];
+		Node(){
+			end=false;
+			for(int i=0;i<26;i++){
+				child[i]=nullptr;
+			}
+		}
+	}
+	Node* root;
+public:
+	//constructor
+	Trie(){
+		root = new Node();
+	}
+
+	//insert function
+	void insert(const& strs){
+		Node* current = root;
+		for(char c: strs){
+			int index = c-'a';
+			if(!current->child[index]){
+				current->child[index]=new Node();
+			}
+			current = current->child[index];
+		}
+		current->end = true;
+	}
+
+	//finding longest common prefix
+	string longestCommPref(){
+		string prefix;
+		Node* current = root;
+		while(current){
+			int childCount;
+			int index=-1;
+			for(int i=0;i<26;i++){
+				if(current->child[i]){
+					childCount++;
+					index=i;
+				}
+			}
+			if(childCount>1 || current->end){
+				break;
+			}
+			current = current->child[index];
+			prefix+=('a'+index);
+		}
+		return prefix;
+	}
+
+}
+
+class Solution{
+	string LongestCommonPrefix(vector<char>& strs){
+		if(strs.empty()) return "";
+
+		Trie trie;
+		for(char c : strs){
+			trie,insert(c);
+		}
+		return trie.longestCommPref();
+	}
+}
+
+Python code:
+
+class Solution:
+	def longestCommonPrefix(self, strs :List[str])-> str:
+		if not strs:
+			return ""
+		ans = strs[0]
+		for str in strs:
+			while not str.startswith(ans):
+				ans = ans[:-1]
+				if not ans:
+					return ""
+		return ans
 
