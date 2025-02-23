@@ -1,4 +1,4 @@
-Question: "Given an integer x, return true if x is a 
+/*Question: Given an integer x, return true if x is a 
 palindrome
 , and false otherwise.
 
@@ -23,31 +23,36 @@ Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
 
 Constraints:
 
--231 <= x <= 231 - 1"
+-231 <= x <= 231 - 1*/
 
 
-Code in CPP
+//Code in CPP
 
-Brute approach - reverse it and check whether revrse and main number are same
+//Brute approach - reverse it and check whether revrse and main number are same - O(log x) in space complexity - to store digits in vector
 
-class Solution{
-public:
-	bool isPalindrome(int x){
-		if(x<0 || x==0 || x%10==0) return false;
-		else{
-			long a = x;
-			long rev=0;
-			while(a!=0){
-				long last = a%10;
-				rev=rev*10+last;
-				a/=10;
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
+	public:
+			bool isPalindrome(int x) {
+					if (x < 0) return false;
+	
+					vector<int> digits;
+					while (x > 0) {
+							digits.push_back(x % 10); // Extract last digit
+							x /= 10;
+					}
+	
+					int n = digits.size();
+					for (int i = 0; i < n / 2; i++) {
+							if (digits[i] != digits[n - 1 - i]) return false;
+					}
+					return true;
 			}
-			return x==rev;
-		}
-	}
-}
-
-optimal approach:
+	};
+//optimal approach:
 
 class Solution {
 public:

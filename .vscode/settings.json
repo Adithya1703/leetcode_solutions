@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "array": "cpp",
+    "initializer_list": "cpp",
+    "utility": "cpp",
+    "two_sum": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "vector": "cpp"
+  }
+}
