@@ -71,3 +71,21 @@ public:
     return k;
   }
 };
+
+
+//Optimal approach
+//using two pointer apprach, TIme complexity - O(n)
+
+class Solution{
+  public:
+    int removeDuplicates(vector<int>& nums){
+      if(nums.empty()) return 0;  //return 0 as vector is empty
+      int k=1; //second pointer - considering 1st element as always unique
+      for(int i=1;i<nums.size();i++){
+        if(nums[i]!=nums[i-1]){ //comapre with previous element
+          nums[k++]=nums[i];
+        }
+      }
+      return k;
+    }
+  };
