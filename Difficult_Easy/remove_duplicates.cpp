@@ -54,18 +54,18 @@ using namespace std;
 class Solution{
 public:
   int removeDuplicates(vector<int>& nums){
-    if(nums.empty()) return 0;
+    if(nums.empty()) return 0;  //return 0 as vector is empty
     int k=0;
-    for(int i=0;i<nums.size();i++){
-      bool isDuplicate = false;
-      for(int j=0;j<k;j++){
-        if(nums[i]==nums[j]){
+    for(int i=0;i<nums.size();i++){ //iterate through entire array
+      bool isDuplicate = false; //check whether current element is unique or not
+      for(int j=0;j<k;j++){ //iterate to check current element is present in k elements of nums
+        if(nums[i]==nums[j]){ //if duplicate found
           isDuplicate = true;
           break;
         }
       }
-      if(!isDuplicate){
-        nums[k++]=nums[i];
+      if(!isDuplicate){ //if duplicate not found add current element to unique list
+        nums[k++]=nums[i]; //placing element in kth position and incrementing k
       }
     }
     return k;
