@@ -42,3 +42,19 @@ class Solution{
   }
 };
 
+
+//Using Newton's Raphson method - O(log log x)
+#include<iostream>
+
+class Solution{
+  int mysqrt(int x){
+    if(x==0|| x==1) return x;
+    long long r = x;
+    while(r*r>x){
+      r=(r+x/r)/2;
+    }
+    return static_cast<int>(r);
+  }
+};
+
+
