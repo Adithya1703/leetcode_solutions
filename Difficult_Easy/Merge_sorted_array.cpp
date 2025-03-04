@@ -62,3 +62,28 @@ public:
     }
   }
 };
+
+
+//another approach
+class Solution {
+  public:
+      void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+          for(int i = m; i<(m+n); i++) {
+              nums1[i] = nums2[i - m];
+          }
+          int a = 0;
+          int b = m;
+          while(a < m+n && b < m+n) {
+              if(nums1[a] > nums1[b]) {
+                  int j = b;
+                  for(int i = b-1; i>=a; i--) {
+                      swap(nums1[i], nums1[j]);
+                      j--;
+                  }
+                  a++;
+                  b++;
+              }
+              else a++;
+          }
+      }
+  };
