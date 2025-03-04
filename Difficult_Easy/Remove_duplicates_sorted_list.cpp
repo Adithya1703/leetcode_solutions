@@ -24,6 +24,10 @@ The list is guaranteed to be sorted in ascending order.
 
 // single appraoch iterate linked list and delete duplicate
 
+#include<iostream>
+using namespace std;
+
+
 struct ListNode {
   int val;
   ListNode *next;
@@ -49,3 +53,27 @@ public:
     return head;
   }
 };
+
+//another approach
+
+class Solution {
+  public:
+      ListNode* deleteDuplicates(ListNode* head) {
+          if(head==NULL || head->next==NULL){
+              return head;
+          }
+          ListNode* curr=head;
+          ListNode* n=head;
+          while(curr->next!=NULL){
+              n=curr->next;
+              if(curr->val!=n->val){
+                  curr=n;
+              }
+              else{
+                  curr->next=n->next;
+                  n->next=NULL;
+              }
+          }
+          return head;
+      }
+  };
