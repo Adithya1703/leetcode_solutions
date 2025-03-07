@@ -52,3 +52,27 @@ class Solution{
       return isMirror(root->left, root->right);
     }
 };
+
+//optimized approach
+
+class Solution {
+  public:
+      bool isSymmetric(TreeNode* root) {
+          if (!root) return true;
+  
+          bool res = isMirrored(root->left, root->right);
+          root->left  = nullptr;
+          root->right = nullptr;
+          
+          return res;
+          }
+  
+      bool isMirrored(TreeNode* left, TreeNode* right) {
+          if (!left && !right) return true;
+          else if (!left || !right) return false;
+          
+          return (left->val == right->val) && 
+              isMirrored(left->left, right->right) &&
+              isMirrored(right->left, left->right);
+      }
+  };
