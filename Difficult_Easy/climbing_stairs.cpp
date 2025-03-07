@@ -34,7 +34,7 @@ public:
   int climb_stairs(int n){
     if(n==1 || n==2) return n;
     int prev1=2, prev2=1, current;
-    for(int i=3;i<=n;i++){
+    for(int i=3;i<=n;i++){ //as we already have F(1) and F(2) we start from 3
       current = prev2+prev1;
       prev2=prev1;
       prev1=current;
