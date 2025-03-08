@@ -51,3 +51,17 @@ class Solution{
       return 1+max(left, right);
     }
 };
+
+
+//Optimized:
+
+class Solution {
+  public:
+      int maxDepth(TreeNode* root) {
+          if(!root) return 0;
+          int ans = 1+max(maxDepth(root->left), maxDepth(root->right));
+          root->left = nullptr;
+          root->right = nullptr;
+          return ans;
+      }
+  };
