@@ -1,0 +1,19 @@
+#include<vector>
+using namespace std;
+
+class Solution {
+  public:
+      vector<vector<int>> generate(int numRows) {
+          vector<vector<int>> triangle(numRows);
+  
+          for (int i = 0; i < numRows; i++) {
+              triangle[i].resize(i + 1, 1); // Resize row to (i+1) elements, all initialized to 1
+  
+              for (int j = 1; j < i; j++) { // Fill the middle elements
+                  triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+              }
+          }
+  
+          return triangle;
+      }
+  };
