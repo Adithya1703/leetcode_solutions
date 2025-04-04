@@ -31,7 +31,7 @@ s consists only of printable ASCII characters.
 
 /*
 Brute force - iterate through string to remove non alphanumeric chars and lowercase them
-and then verfiy palindrome
+and then verfiy palindrome, TIme complexity - O(n)
 */
 
 #include <iostream>
@@ -59,6 +59,35 @@ public:
       if(arr[i]!=arr[n-1-i]){
         return false;
       }
+    }
+    return true;
+  }
+
+};
+
+// Two pointer approach - time complexity - O(n) & Space complexity - O(1):using constant space
+#include <iostream>
+using namespace std;
+
+class Solution{
+public:
+  bool isPalindrome(string s){
+    int left = 0;
+    int right = s.size()-1;
+    while(left<right){
+      while(left<right && !isalnum(s[left])){
+        left++;
+      }
+
+      while (left < right && !isalnum(s[right])) {
+        right--;
+      }
+
+      if(tolower(s[left])!=tolower(s[right])){
+        return false;
+      }
+      left++;
+      right--;
     }
     return true;
   }
