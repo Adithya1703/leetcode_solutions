@@ -41,44 +41,56 @@ Follow-up: Can you implement the queue such that each operation is amortized O(1
 */
 
 #include<stack>
+#include<vector>
 
 using namespace std;
 
-class MyQueue{
-private:
-  stack<int> main;
-  stack<int> aux;
+class MyQueue {
+    stack<int> main;
+    vector<int> temp;
+
 public:
     MyQueue() {}
 
-    void push(int x){
-      main.push(x);
+    void push(int x) {
+        main.push(x);
     }
 
-    int peek(){
-      while(!main.empty()){
-        aux.push(main.top());
-        main.pop();
-      }
-      int front = aux.top();
-      while(!aux.empty()){
-        main.push(aux.top());
-        aux.pop();
-      }
-      return front;
+    int pop() {
+        if (temp.empty()) {
+            while (!main.empty()) {
+                temp.push_back(main.top());
+                main.pop();
+            }
+        }
+        int val = temp.back();
+        temp.pop_back();
+        return val;
     }
 
-    int pop(){
-      int val = peek();
-      main.pop();
-      return val;
+    int peek() {
+        if (temp.empty()) {
+            while (!main.empty()) {
+                temp.push_back(main.top());
+                main.pop();
+            }
+        }
+        return temp.back();
     }
 
-    bool empty(){
-      return main.empty();
+    bool empty() {
+        return main.empty() && temp.empty();
     }
 };
 
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue* obj = new MyQueue();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->peek();
+ * bool param_4 = obj->empty();
+ */
 /*
 Time Complexity
 push: O(1)
